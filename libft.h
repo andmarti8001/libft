@@ -1,0 +1,239 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: andmarti <andmarti@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/08 01:41:43 by andmarti          #+#    #+#             */
+/*   Updated: 2025/10/08 21:49:51 by andmarti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LIBFT_H
+# define LIBFT_H
+
+# include <stddef.h>
+
+/*---IS_FUNCTIONS---*/
+
+/**
+ * @brief returns if 'c' is alphabetical
+ * 
+ * @param c character
+ * @return 1 for true; 0 for false
+*/
+int		ft_isalpha(int c);
+/**
+ * @brief returns if 'c' is digit
+ * 
+ * @param c character
+ * @return 1 for true; 0 for false
+*/
+int		ft_isdigit(int c);
+/**
+ * @brief returns if 'c' is alphanumerical 
+ * 
+ * @param c character
+ * @return 1 for true; 0 for false
+*/
+int		ft_isalnum(int c);
+/**
+ * @brief returns if 'c' is in ascii range 
+ * 
+ * @param c character
+ * @return 1 for true; 0 for false
+*/
+int		ft_isascii(int c);
+/**
+ * @brief returns if 'c' is a printable character  
+ * 
+ * @param c character
+ * @return 1 for true; 0 for false
+*/
+int		ft_isprint(int c);
+/**
+ * @brief if c is uppercase letter, makes it lowercase, if not returns c
+ * 
+ * @param c character
+ * @return lowercased c
+*/
+int		ft_toupper(int c);
+/**
+ * @brief finds first occurence of c in character string s
+ * 
+ * @param s character string
+ * @param c character to find
+ * @return pointer to first occurence of c
+*/
+int		ft_tolower(int c);
+/**
+ * @brief returns the length of the character string
+ * 
+ * @param s character string
+ * @return len as an unsigned int
+*/
+size_t	ft_strlen(const char *s);
+/**
+ * @brief sets b until b + len to c
+ * 
+ * @param b pointer to memory
+ * @param c character to set
+ * @param len length of bytes to set
+ * @return returns pointer to b
+*/
+void	*ft_memset(void *b, int c, size_t len);
+/**
+ * @brief sets s until s + n to 0
+ * 
+ * @param s pointer to memory
+ * @param n length of bytes to set to 0
+ * @return void
+*/
+void	ft_bzero(void *s, size_t n);
+/**
+ * @brief copies src to dst for n bytes. If strings overlap behavior is undefined
+ * 
+ * @param dst destination character string
+ * @param src source character string
+ * @param n length of bytes to copy
+ * @return void
+*/
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
+/**
+ * @brief copies src to dst for n bytes. 
+ * If strings overlap it will copy in a non-destructive manner
+ * 
+ * @param dst destination character string
+ * @param src source character string
+ * @param len length of bytes to copy
+ * @return void
+*/
+void	*ft_memmove(void *dst, const void *src, size_t len);
+/**
+ * @brief if c is lowercase letter, makes it uppercase, if not returns c
+ * 
+ * @param c character
+ * @return uppercased c
+*/
+char	*ft_strchr(const char *s, int c);
+/**
+ * @brief finds last occurence of c in character string s
+ * 
+ * @param s character string
+ * @param c character to find
+ * @return pointer to last occurence of c
+*/
+char	*ft_strrchr(const char *s, int c);
+/**
+ * @brief lexicographically compare first n characters of s1 and s2
+ * 
+ * @param s1 character string 1
+ * @param s2 character string 2
+ * @param n length to compare
+ * @return difference between s1 and s2
+*/
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+/**
+ * @brief locates first occurence of c (converted to unsigned char)
+ * 
+ * @param s pointer to memory
+ * @param c bytes to locate
+ * @return pointer to first occurence of c
+*/
+void	*ft_memchr(const void *s, int c, size_t n);
+/**
+ * @brief lexicographically compare first n characters of s1 and s2
+ * 
+ * @param s1 pointer to memory 1
+ * @param s2 pointer to memory 2
+ * @param n length of bytes to compare
+ * @return difference between s1 and s2
+*/
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
+/**
+ * @brief locate first occurence of needle string within haystack string
+ * 
+ * @param haystack larger string to search through
+ * @param needle smaller string to find
+ * @param len length to compare
+ * @return pointer to the first character of succesfully found needle
+*/
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+/**
+ * @brief lexicographically compare first n characters of s1 and s2
+ * 
+ * @param str integer value represented as character string
+ * @return integer value stored in integer
+*/
+int		ft_atoi(const char *str);
+/**
+ * @brief duplicates given string on heap memory
+ * 
+ * @param s1 string to duplicate
+ * @return duplicated string
+*/
+char	*ft_strdup(const char *s1);
+/**
+ * @brief allocates memory for count objects of size size and set memory to 0
+ * 
+ * @param count num of object
+ * @param size size of object in bytes
+ * @return pointer to allocated memory
+*/
+void	*ft_calloc(size_t count, size_t size);
+/**
+ * @brief copies source to destination. inputs must be NULL terminated
+ * 
+ * @param dst destination string
+ * @param src source string to copy
+ * @param dstsize length to be copied including sentinal character
+ * @return length of string tried to create
+*/
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+/**
+ * @brief concatenates source to destination. inputs must be NULL terminated
+ * 
+ * @param dst destination string
+ * @param src source string concatenate
+ * @param dstsize length of dst including sentinal character.
+ * function will stop after this many characters
+ * @return length of string tried to create
+*/
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+
+/*___PART_2___*/
+
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s1, char const *set);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+char	**ft_split(char const *s, char c);
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char	*ft_itoa(int n);
+
+/*___LIST_DEF___*/
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
+/*___BONUS___*/
+
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+#endif

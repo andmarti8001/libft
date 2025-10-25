@@ -18,12 +18,14 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*callocced;
+	size_t	total;
 
 	if (size != 0 && count > SIZE_MAX / size)
 		return (NULL);
-	callocced = malloc(count * size);
+	total = count * size;
+	callocced = malloc(total);
 	if (!callocced)
 		return (NULL);
-	ft_bzero(callocced, count * size);
+	ft_bzero(callocced, total);
 	return (callocced);
 }

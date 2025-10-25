@@ -6,7 +6,7 @@
 /*   By: andmarti <andmarti@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 14:15:00 by andmarti          #+#    #+#             */
-/*   Updated: 2025/10/24 14:28:00 by andmarti         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:05:32 by andmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!trimmed)
 		return (NULL);
 	ft_strlcpy(trimmed, s1, end - s1 + 1);
-	return (trimmed);	
+	return (trimmed);
 }

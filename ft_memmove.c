@@ -14,8 +14,8 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char			*d;
-	const unsigned char			*s;
+	unsigned char		*d;
+	const unsigned char	*s;
 
 	if (dst <= src || dst >= src + len)
 		return (ft_memcpy(dst, src, len));
@@ -28,4 +28,3 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	return (dst);
 }
-

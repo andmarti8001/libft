@@ -6,7 +6,7 @@
 /*   By: andmarti <andmarti@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 01:41:43 by andmarti          #+#    #+#             */
-/*   Updated: 2025/10/08 21:49:51 by andmarti         ###   ########.fr       */
+/*   Updated: 2025/10/24 18:57:04 by andmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define LIBFT_H
 
 # include <stddef.h>
+
+#if defined(__cplusplus)
+# define RESTRICT
+#else
+# define RESTRICT restrict
+#endif
 
 /*---IS_FUNCTIONS---*/
 
@@ -99,7 +105,7 @@ void	ft_bzero(void *s, size_t n);
  * @param n length of bytes to copy
  * @return void
 */
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 /**
  * @brief copies src to dst for n bytes. 
  * If strings overlap it will copy in a non-destructive manner
@@ -204,16 +210,122 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 /*___PART_2___*/
 
+/**
+ * @brief Allocates (with malloc(3)) and returns a substring
+from the string ’s’.
+The substring begins at index ’start’ and is of
+maximum size ’len’.
+ * 
+ * @param s The string from which to create the substring.
+ * @param start The start index of the substring in the
+string ’s’.
+ * @param len  The maximum length of the substring.
+ * @return The substring.
+NULL if the allocation fails.
+*/
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+/**
+ * @brief joins to read only strings
+ * 
+ * @param s1 The prefix string.
+ * @param s2 The suffix string.
+ * @return Allocates (with malloc(3)) and returns a new
+string, which is the result of the concatenation
+of ’s1’ and ’s2’.
+*/
 char	*ft_strjoin(char const *s1, char const *s2);
+/**
+ * @brief Allocates (with malloc(3)) and returns a copy of
+’s1’ with the characters specified in ’set’ removed
+from the beginning and the end of the string.
+ * 
+ * @param s1 The string to be trimmed.
+ * @param set The reference set of characters to trim.
+ * @return The trimmed string.
+NULL if the allocation fails.
+*/
 char	*ft_strtrim(char const *s1, char const *set);
+/**
+ * @brief Outputs the character ’c’ to the given file
+descriptor.
+ * 
+ * @param c The character to output.
+ * @param fd  The file descriptor on which to write.
+ * @return void
+*/
 void	ft_putchar_fd(char c, int fd);
+/**
+ * @brief Outputs the string ’s’ to the given file
+descriptor.
+ * 
+ * @param s The string to output.
+ * @param fd The file descriptor on which to write.
+ * @return void
+*/
 void	ft_putstr_fd(char *s, int fd);
+/**
+ * @brief Outputs the string ’s’ to the given file
+descriptor.
+ * 
+ * @param s The string to output.
+ * @param fd The file descriptor on which to write.
+ * @return void
+*/
 void	ft_putendl_fd(char *s, int fd);
+/**
+ * @brief Outputs the integer ’n’ to the given file
+descriptor.
+ * 
+ * @param n The integer to output.
+ * @param fd The file descriptor on which to write.
+ * @return void
+*/
 void	ft_putnbr_fd(int n, int fd);
+/**
+ * @brief Allocates (with malloc(3)) and returns an array
+ * of strings obtained by splitting ’s’ using the
+ * character ’c’ as a delimiter. The array must end
+ * with a NULL pointer.
+ * 
+ * @param s  The string to be split.
+ * @param c The delimiter character.
+ * @return splitted array
+*/
 char	**ft_split(char const *s, char c);
+/**
+ * @brief Applies the function ’f’ on each character of
+ * the string passed as argument, passing its index
+ * as first argument. Each character is passed by
+ * address to ’f’ to be modified if necessary.
+ * 
+ * @param s The string on which to iterate.
+ * @param f The function to apply to each character.
+ * @return void
+*/
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+/**
+ * @brief Applies the function f to each character of the
+ * string s, passing its index as the first argument
+ * and the character itself as the second. A new
+ * string is created (using malloc(3)) to collect the
+ * results from the successive applications of f.
+ * 
+ * @param s The string on which to iterate.
+ * @param f The function to apply to each character.
+ * @return The string created from the successive applications
+of ’f’.
+Returns NULL if the allocation fails.
+*/
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+/**
+ * @brief Allocates (with malloc(3)) and returns a string
+ * representing the integer received as an argument.
+ * Negative numbers must be handled.
+ * 
+ * @param n the integer to convert.
+ * @return The string representing the integer.
+ * NULL if the allocation fails.
+*/
 char	*ft_itoa(int n);
 
 /*___LIST_DEF___*/

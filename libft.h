@@ -15,13 +15,7 @@
 
 # include <stddef.h>
 
-#if defined(__cplusplus)
-# define RESTRICT
-#else
-# define RESTRICT restrict
-#endif
-
-/*---IS_FUNCTIONS---*/
+/*---PART-ONE---*/
 
 /**
  * @brief returns if 'c' is alphabetical
@@ -208,7 +202,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 */
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
-/*___PART_2___*/
+/*---PART-TWO---*/
 
 /**
  * @brief Allocates (with malloc(3)) and returns a substring

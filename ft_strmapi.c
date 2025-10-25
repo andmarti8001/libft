@@ -15,19 +15,21 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	len;
-	size_t	i;
-	char	*mapped;
+	size_t		len;
+	const char	*start;
+	char		*mapped;
 
 	if (!s || !f)
 		return (NULL);
+	start = s;
 	len = ft_strlen(s);
-	mapped = (char *)malloc(sizeof(char) * (len + 1));
+	mapped = (char *)calloc(len + 1, sizeof(char));
 	if (!mapped)
 		return (NULL);
-	mapped[len] = '\0';
-	i = -1;
-	while (s[++i])
-		mapped[i] = f(i, s[i]);
-	return (mapped);
+	while (*s)
+	{
+		*mapped++ = f(s - start, *s);
+		s++;
+	}
+	return (mapped - len);
 }

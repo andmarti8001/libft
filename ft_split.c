@@ -51,7 +51,7 @@ char	*get_next_word(char const *s, char c, size_t *t)
 	while (s[*t] == c && s[*t])
 		*t += 1;
 	len = word_len(&s[*t], c);
-	next_word = (char *)malloc(sizeof(char) * (len + 1));
+	next_word = malloc(sizeof(char) * (len + 1));
 	if (!next_word)
 		return (NULL);
 	next_word[len] = '\0';
@@ -72,7 +72,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	wc = get_word_count(s, c);
-	splitted = (char **)malloc(sizeof(char *) * (wc + 1));
+	splitted = malloc(sizeof(char *) * (wc + 1));
 	if (!splitted)
 		return (NULL);
 	splitted[wc] = (char *)0;

@@ -25,7 +25,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s2)
 		return (ft_strdup(s1));
 	dstsize = ft_strlen(s1) + ft_strlen(s2) + 1;
-	joinned = ft_calloc(dstsize, sizeof(char));
+	joinned = malloc(dstsize);
 	if (!joinned)
 		return (NULL);
 	ft_strlcpy(joinned, s1, dstsize);

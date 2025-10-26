@@ -11,13 +11,21 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+
+void	ft_putunbr_fd(unsigned int n, int fd)
+{
+	if (n >= 10)
+		ft_putunbr_fd(n / 10, fd);
+	ft_putchar_fd(n % 10 + '0', fd);
+}
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	*num_str;
-
-	num_str = ft_itoa(n);
-	ft_putstr_fd(num_str, fd);
-	free(num_str);
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putunbr_fd((unsigned int)(-(long)n), fd);
+	}
+	else
+		ft_putunbr_fd(n, fd);
 }

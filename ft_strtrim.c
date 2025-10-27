@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int	is_charset(char c, char const *set)
+static int	is_charset(char c, char const *set)
 {
 	while (*set)
 	{
@@ -23,7 +23,7 @@ int	is_charset(char c, char const *set)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char		*ft_strtrim(char const *s1, char const *set)
 {
 	char	*end;
 	char	*trimmed;

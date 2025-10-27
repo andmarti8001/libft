@@ -5,80 +5,82 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: andmarti <andmarti@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/08 11:26:29 by andmarti          #+#    #+#             */
-/*   Updated: 2025/10/24 15:47:25 by andmarti         ###   ########.fr       */
+/*   Created: 2025/10/26 16:42:20 by andmarti          #+#    #+#             */
+/*   Updated: 2025/10/26 16:55:55 by andmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-size_t	word_len(char const *s, char c)
+static char		*get_next_word(const char **s, char c)
 {
-	size_t	len;
+	const char	*s_ptr;
+	char		*word;
+	size_t		len;
 
-	len = 0;
-	while (s[len] != c && s[len])
-		len++;
-	return (len);
+	while (**s && **s == c)
+		(*s)++;
+	s_ptr = *s;
+	while (*s_ptr && *s_ptr != c)
+		s_ptr++;
+	len = s_ptr - *s;
+	word = malloc(len + 1);
+	if (!word)
+		return (NULL);
+	ft_strlcpy(word, *s, len + 1);
+	*s = s_ptr;
+	return (word);
 }
 
-size_t	get_word_count(char const *s, char c)
+static size_t	get_wc(const char *s, char c)
 {
-	size_t	i;
 	size_t	wc;
 
-	i = 0;
 	wc = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] != c)
+		if (*s != c)
 		{
-			wc += 1;
-			i += word_len(&s[i], c) - 1;
+			while (*s && *s != c)
+				s++;
+			wc++;
 		}
-		i++;
+		else
+			s++;
 	}
 	return (wc);
 }
 
-char	*get_next_word(char const *s, char c, size_t *t)
+static void		free_split(char **splitted, size_t	i)
 {
-	size_t	i;
-	size_t	len;
-	char	*next_word;
-
-	while (s[*t] == c && s[*t])
-		*t += 1;
-	len = word_len(&s[*t], c);
-	next_word = malloc(sizeof(char) * (len + 1));
-	if (!next_word)
-		return (NULL);
-	next_word[len] = '\0';
-	i = -1;
-	while (++i < len)
-		next_word[i] = s[*t + i];
-	*t += len;
-	return (next_word);
+	while (i > 1)
+		free(splitted[i-- - 1]);
+	free(splitted);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**splitted;
 	size_t	wc;
 	size_t	i;
-	size_t	j;
+	char	**splitted;
 
 	if (!s)
 		return (NULL);
-	wc = get_word_count(s, c);
-	splitted = malloc(sizeof(char *) * (wc + 1));
+	wc = get_wc(s, c);
+	splitted = ft_calloc(wc + 1, sizeof(char *));
 	if (!splitted)
 		return (NULL);
-	splitted[wc] = (char *)0;
-	i = -1;
-	j = 0;
-	while (++i < wc)
-		splitted[i] = get_next_word(s, c, &j);
+	i = 0;
+	while (i < wc)
+	{
+		splitted[i] = get_next_word(&s, c);
+		if (!(splitted[i]))
+		{
+			free_split(splitted, i);
+			return (NULL);
+		}
+		i++;
+	}
 	return (splitted);
 }

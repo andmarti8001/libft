@@ -11,33 +11,17 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
-
-static int	is_charset(char c, char const *set)
-{
-	while (*set)
-	{
-		if (*set++ == c)
-			return (1);
-	}
-	return (0);
-}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*end;
-	char	*trimmed;
 
-	while (*s1 && is_charset(*s1, set))
+	while (*s1 && ft_strchr(set, *s1))
 		s1++;
 	if (*s1 == '\0')
 		return (ft_strdup(""));
 	end = (char *)(s1 + ft_strlen(s1));
-	while (end > s1 && is_charset(*(end - 1), set))
+	while (end > s1 && ft_strchr(set, *(end - 1)))
 		end--;
-	trimmed = malloc(end - s1 + 1);
-	if (!trimmed)
-		return (NULL);
-	ft_strlcpy(trimmed, s1, end - s1 + 1);
-	return (trimmed);
+	return (ft_substr(s1, 0, end - s1));
 }

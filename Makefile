@@ -61,7 +61,7 @@ BONUS_SRC = ft_lstnew.c \
 OBJS = $(SRC:.c=.o)
 BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
-.c.o:
+%.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS)

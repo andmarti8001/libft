@@ -26,7 +26,7 @@ static void	fill_itoa(char *str, long n, size_t *i)
 	*i += 1;
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	size_t	i;
 	char	itoaed[12];

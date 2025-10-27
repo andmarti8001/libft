@@ -19,7 +19,7 @@ static void	ft_putunbr_fd(unsigned int n, int fd)
 	ft_putchar_fd(n % 10 + '0', fd);
 }
 
-void		ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	if (n < 0)
 	{

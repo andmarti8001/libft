@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static char		*get_next_word(const char **s, char c)
+static char	*get_next_word(const char **s, char c)
 {
 	const char	*s_ptr;
 	char		*word;
@@ -52,7 +52,7 @@ static size_t	get_wc(const char *s, char c)
 	return (wc);
 }
 
-static void		free_split(char **splitted, size_t	i)
+static void	free_split(char **splitted, size_t	i)
 {
 	while (i > 1)
 		free(splitted[i-- - 1]);

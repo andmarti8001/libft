@@ -23,7 +23,7 @@ static int	is_charset(char c, char const *set)
 	return (0);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*end;
 	char	*trimmed;
